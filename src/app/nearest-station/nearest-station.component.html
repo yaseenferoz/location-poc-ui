@@ -1,0 +1,31 @@
+<h1>Find Nearest Service Station</h1>
+
+<!-- Toggle Button -->
+<button (click)="toggleLocationInput()">
+  Use {{ useCurrentLocation ? 'Manual Location' : 'Current Location' }}
+</button>
+
+<!-- Manual Location Input -->
+<div *ngIf="!useCurrentLocation">
+  <div>
+    <label>Latitude:</label>
+    <input type="number" [(ngModel)]="userLocation.latitude">
+  </div>
+  <div>
+    <label>Longitude:</label>
+    <input type="number" [(ngModel)]="userLocation.longitude">
+  </div>
+  <button (click)="findNearestStation()">Find</button>
+</div>
+
+<!-- Current Location Auto Fetch -->
+<div *ngIf="useCurrentLocation">
+  <p>Using your current location...</p>
+</div>
+
+<!-- Display Nearest Station -->
+<div *ngIf="nearestStation">
+  <h2>Nearest Station: {{ nearestStation.nearestStation.name }}</h2>
+  <p>{{ nearestStation.nearestStation.address }}</p>
+  <p>Distance: {{ nearestStation.distance }}</p>
+</div>
